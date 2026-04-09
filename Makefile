@@ -1,11 +1,25 @@
-.PHONY: dev stop logs-be
+.PHONY: dev dev-be dev-fe stop
 
 dev:
-	docker compose -f stack/local/docker-compose.yml up -d backend
+	@echo ">>> Installazione dipendenze backend..."
+	npm install
+	@echo ">>> Installazione dipendenze frontend..."
+	cd client && npm install
+	@echo ">>> Avvio backend in una nuova finestra..."
+	cmd //c start "BabboNatale - Backend" cmd /k "npm run start:dev"
+	@echo ">>> Avvio frontend (porta 8080)..."
+	cd client && npm run dev -- --port 8080
+
+dev-be:
+	npm install
+	cmd //c start "BabboNatale - Backend" cmd /k "npm run start:dev"
+
+dev-fe:
+	cd client && npm install
 	cd client && npm run dev -- --port 8080
 
 stop:
-	docker compose -f stack/local/docker-compose.yml down -v
+	@echo "Chiudi manualmente la finestra del backend."
 
 logs-be:
-	docker container logs --follow ricettario-backend
+	@echo "I log del backend appaiono nella finestra 'BabboNatale - Backend'."

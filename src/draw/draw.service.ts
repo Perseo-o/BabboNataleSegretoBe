@@ -1,9 +1,15 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import * as fs from 'fs';
 
+interface HistoryRecord {
+  year: number;
+  target: string;
+}
+
 interface Person {
   name: string;
-  group: string;
+  group?: string;
+  history?: HistoryRecord[];
 }
 
 interface DataFile {
@@ -30,13 +36,39 @@ export class DrawService {
       .map(({ value }) => value);
   }
 
-  private isValidMatch(giver: Person, receiver: Person): boolean {
-    if (giver.name === receiver.name) return false;
-    if (giver.group === receiver.group) return false;
-    return true;
+  private getRecentTargets(person: Person, currentYear: number): string[] {
+    if (!person.history) return [];
+
+    return person.history
+      .filter((h) => h.year >= currentYear - 3)
+      .map((h) => h.target);
   }
 
-  private generateAssignments(people: Person[]): Record<string, string> {
+  private isValidMatch(
+  giver: Person,
+  receiver: Person,
+  currentYear: number,
+): boolean {
+  if (giver.name === receiver.name) return false;
+
+  if (
+    giver.group &&
+    receiver.group &&
+    giver.group === receiver.group
+  ) {
+    return false;
+  }
+
+  const recentTargets = this.getRecentTargets(giver, currentYear);
+  if (recentTargets.includes(receiver.name)) return false;
+
+  return true;
+}
+
+  private generateAssignments(
+    people: Person[],
+    currentYear: number,
+  ): Record<string, string> {
     const givers = this.shuffle([...people]);
     const receivers = [...people];
 
@@ -51,7 +83,7 @@ export class DrawService {
         receivers.filter(
           (r) =>
             !Object.values(assignments).includes(r.name) &&
-            this.isValidMatch(giver, r),
+            this.isValidMatch(giver, r, currentYear),
         ),
       );
 
@@ -66,19 +98,36 @@ export class DrawService {
       return false;
     };
 
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 200; i++) {
       if (backtrack(0)) return assignments;
     }
 
     throw new BadRequestException(
-      'Non è stato possibile generare un match valido. Controlla i gruppi!',
+      'Non è stato possibile generare un match valido. Controlla gruppi e storico!',
     );
   }
 
   generateAll() {
     const data = this.loadData();
+    const currentYear = new Date().getFullYear();
 
-    const assignments = this.generateAssignments(data.people);
+    const assignments = this.generateAssignments(data.people, currentYear);
+
+    for (const giverName in assignments) {
+      const giver = data.people.find((p) => p.name === giverName);
+      if (!giver) continue;
+
+      if (!giver.history) giver.history = [];
+
+      giver.history.push({
+        year: currentYear,
+        target: assignments[giverName],
+      });
+
+      giver.history = giver.history.filter(
+        (h) => h.year >= currentYear - 3,
+      );
+    }
 
     data.assignments = assignments;
     this.saveData(data);

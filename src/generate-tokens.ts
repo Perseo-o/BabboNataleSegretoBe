@@ -5,21 +5,28 @@ import * as fs from 'fs';
 const encryption = new EncryptionService();
 
 const names = [
-  'Luca',
-  'famiglia1',
-  'Maria',
-  'Giulia',
-  'Marco',
-  'Antonio',
-  'Gianfranco',
-  'Chiara',
-  'Francesca',
-  'Elena',
-  'Roberto',
-  'Federica',
-  'Alessandro',
-  'Valeria',
-  'Michela',
+   "Rita",
+    "Sandra",
+    "Michela",
+    "Chiara (geggi)",
+    "Teodoro",
+    "Teresa",
+    "Valeria",
+    "Samuele",
+    "Alan",
+    "Chiara (Lori)",
+    "Gianfranco",
+    "Beatrice",
+    "Maristella",
+    "Ramon",
+    "Antonio",
+    "Marcello",
+    "Ilaria",
+    "Lorenzo",
+    "Francesco",
+    "Noemi",
+    "Diego",
+    "Giuseppe"
 ];
 
 const tokens: Record<string, string> = {};
