@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secret Santa</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <div class="snow"></div>
+
+    <div class="container">
+      <h1>🎁 Secret Santa 🎄</h1>
+
+      <label for="nameSelect">Scegli il tuo nome:</label>
+      <select id="nameSelect">
+        <option value="">Caricamento...</option>
+      </select>
+
+      <button id="drawBtn">Estrai il tuo destinatario 🎅</button>
+
+      <div class="result" id="result"></div>
+    </div>
+
+    <script type="module" src="src/main.ts"></script>
+  </body>
+</html>

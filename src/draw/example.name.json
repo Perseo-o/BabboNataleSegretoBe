@@ -1,0 +1,116 @@
+{
+  "people": [
+    {
+      "name": "Ramon",
+      "group": "famiglia1"
+    },
+    {
+      "name": "Sandra",
+      "group": "famiglia1"
+    },
+    {
+      "name": "Alan",
+      "group": "famiglia1"
+    },
+    {
+      "name": "Teresa",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Noemi",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Teodoro",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Beatrice",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Antonio",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Gianfranco",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Chiara (geggi)",
+      "group": "famiglia2"
+    },
+    {
+      "name": "Marcello",
+      "group": "famiglia3"
+    },
+    {
+      "name": "Ilaria",
+      "group": "famiglia3"
+    },
+    {
+      "name": "Lorenzo",
+      "group": "famiglia3"
+    },
+    {
+      "name": "Chiara (Lori)",
+      "group": "famiglia3"
+    },
+    {
+      "name": "Giuseppe",
+      "group": "famiglia3"
+    },
+    {
+      "name": "Rita",
+      "group": "famiglia3"
+    },
+    {
+      "name": "Francesco",
+      "group": "famiglia4"
+    },
+    {
+      "name": "Maristella",
+      "group": "famiglia4"
+    },
+    {
+      "name": "Diego",
+      "group": "famiglia4"
+    },
+    {
+      "name": "Samuele",
+      "group": "famiglia4"
+    },
+    {
+      "name": "Valeria",
+      "group": "famiglia4"
+    },
+    {
+      "name": "Michela",
+      "group": "famiglia4"
+    }
+  ],
+  "assignments": {
+    "Rita": "Sandra",
+    "Sandra": "Diego",
+    "Michela": "Marcello",
+    "Chiara (geggi)": "Ilaria",
+    "Teodoro": "Rita",
+    "Teresa": "Michela",
+    "Valeria": "Teodoro",
+    "Samuele": "Ramon",
+    "Alan": "Giuseppe",
+    "Chiara (Lori)": "Gianfranco",
+    "Gianfranco": "Alan",
+    "Beatrice": "Samuele",
+    "Maristella": "Teresa",
+    "Ramon": "Chiara (geggi)",
+    "Antonio": "Lorenzo",
+    "Marcello": "Beatrice",
+    "Ilaria": "Valeria",
+    "Lorenzo": "Francesco",
+    "Francesco": "Chiara (Lori)",
+    "Noemi": "Maristella",
+    "Diego": "Noemi",
+    "Giuseppe": "Antonio"
+  }
+}
