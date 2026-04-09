@@ -3,9 +3,9 @@
 Backend leggero e funzionale per il tuo **Secret Santa**.  
 Tre endpoint principali:
 
-1. **GET** lista delle persone
-2. **POST** creazione accoppiamento
-3. **POST** estrazione del nome
+1. **GET** lista delle persone -- /draw/participants
+2. **POST** creazione accoppiamento -- /draw/generate
+3. **GET** estrazione del nome -- /draw/<token>
 
 ---
 
@@ -17,17 +17,31 @@ Tre endpoint principali:
 npm install
 ```
 
-2. Avvia il backend in modalità sviluppo:
+2. Installa le dipendenze anche per la cartella client ovvero il FE:
 
 ```bash
-npm run start:dev
+cd client
+npm install
 ```
 
-Il backend partirà sulla porta 3000.
+3. usare i comandi del Makefile per un utilizzo più semplice:
+per una partenza di be e fe usare:
+```bash
+make dev
+```
+per una partenza parziale di uno o l'altro usare rispettivamente ```bash
+make dev
+```
+dev-be:
 
-## Esporre la porta per il frontend
+```
+O
+```bash
+dev-fe:
 
-Puoi rendere il backend accessibile da qualsiasi dispositivo.
+```
+
+## Esporre la porta del frontend
 
 # Opzione 1 – Cloudflare Tunnel (consigliata, gratuita)
 
@@ -69,3 +83,6 @@ npx ts-node generate-tokens.ts
 ```
 
 ⚠️ Importante: salva i token generati, ti serviranno per l’autenticazione.
+
+passo finale per creare il link finale
+{link-generato}/draw/token
